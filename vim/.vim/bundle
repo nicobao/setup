@@ -1,6 +1,6 @@
 vim-erlang-omnicomplete
 vim-erlang-skeletons
-ctrip.vim
+ctrlp.vim
 nerdtree
 vim-elixir
 vim-erlang-compiler
