@@ -22,3 +22,11 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Copy vim yanked text to system clipboard as well
+" Requires vim-gnome on Ubuntu/Debian or vim-X11 package on RedHat/CentOS/Fedora
+" Requires using vimx instead of vim - 
+" You can edit .bashrc to run vimx automatically instead of vim by adding:
+" if [[ -x "$(command -v vimx)" ]]; then alias vim='vimx'; fi
+" see https://vim.fandom.com/wiki/Accessing_the_system_clipboard
+set clipboard^=unnamed,unnamedplus
