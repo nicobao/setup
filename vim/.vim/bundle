@@ -4,3 +4,7 @@ ctrlp.vim
 nerdtree
 vim-elixir
 vim-erlang-compiler
+vim-javascript
+typescript-vim
+vim-jsx-pretty
+rust.vim
