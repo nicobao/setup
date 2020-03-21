@@ -2,7 +2,7 @@ call pathogen#infect()
 call pathogen#helptags()
 syntax on
 filetype plugin indent on
-imap jj <Esc>
+imap jk <Esc>
 nmap <Space> i
 
 set t_Co=256
@@ -18,7 +18,7 @@ noremap <F4> gT
 noremap <F5> gt 
 
 " Use F1 to split the current tab and open a terminal at the bottom
-nnoremap <F1> :wincmd b \| bel terminal<CR>
+nnoremap <F3> :wincmd b \| bel terminal<CR>
 
 " Switch between splits is now ctrl+j...etc
 map <C-j> <C-W>j
