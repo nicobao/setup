@@ -44,10 +44,10 @@ This function should only modify configuration layer settings."
      git
      ivy
      ;; helm
-     lsp
      clojure
      erlang
-;;     (elixir :variables elixir-backend 'lsp)
+     lsp ;; remove for eglot
+     (elixir :variables elixir-backend 'lsp) ;; remove for eglot
      markdown
      multiple-cursors
      org
@@ -69,8 +69,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     elixir-mode
-     eglot
+     ;; elixir-mode ;; for eglot
+     ;; eglot ;; for eglot
      exunit
      )
 
@@ -497,20 +497,23 @@ before packages are loaded."
    evil-escape-key-sequence "jk"
    evil-escape-delay 0.2
    )
-  (require 'eglot)
-  (add-hook 'elixir-mode-hook 'eglot-ensure)
-  (add-to-list 'eglot-server-programs '(elixir-mode "/home/nicolas/elixir-ls/release/language_server.sh"))
-;;  (setq
-;;   lsp-ui-doc-enable nil)
-;;  (use-package lsp-mode
-;;    :commands lsp
-;;    :ensure t
-;;    :diminish lsp-mode
-;;    :hook
-;;    (elixir-mode . lsp)
-;;    :init
-;;    (add-to-list 'exec-path "~/elixir-ls/release/language_server.sh")
-;;    )
+;;  (require 'eglot)
+;;  (define-key flymake-mode-map (kbd "M-]") 'flymake-goto-next-error)
+;;  (define-key flymake-mode-map (kbd "M-[") 'flymake-goto-prev-error)
+;;  (add-hook 'elixir-mode-hook 'eglot-ensure)
+;;  (add-to-list 'eglot-server-programs '(elixir-mode "/home/nicolas/elixir-ls/release/language_server.sh"))
+;;  (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+  (setq
+   lsp-ui-doc-enable nil)
+  (use-package lsp-mode
+    :commands lsp
+    :ensure t
+    :diminish lsp-mode
+    :hook
+    (elixir-mode . lsp)
+    :init
+    (add-to-list 'exec-path "~/elixir-ls/release/language_server.sh")
+    )
   (with-eval-after-load 'elixir-mode
     (spacemacs/declare-prefix-for-mode 'elixir-mode
       "mt" "tests" "testing related functionality")
