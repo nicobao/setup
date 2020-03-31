@@ -32,29 +32,33 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
+     react
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
+     javascript
      emacs-lisp
      git
      ivy
      ;; helm
-     clojure
      erlang
      lsp ;; remove for eglot
      (elixir :variables elixir-backend 'lsp) ;; remove for eglot
      markdown
      multiple-cursors
      org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     python
+     (shell :variables
+             shell-default-height 30
+             shell-default-position 'bottom)
      spell-checking
+     sphinx
+     restructuredtext
      syntax-checking
      version-control
      treemacs
@@ -535,6 +539,8 @@ before packages are loaded."
     (define-key company-active-map (kbd "tab") #'company-complete-selection)
     (define-key company-active-map [tab] #'company-complete-selection)
     )
+  ;; Tip, type M-n to paste word on point.
+  (spacemacs/set-leader-keys (kbd "pi") 'counsel-projectile-git-grep)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -551,7 +557,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (lsp-ui lsp-treemacs company-lsp helm-gtags ggtags dap-mode bui counsel-gtags eglot flymake jsonrpc exunit yasnippet-snippets wgrep treemacs-magit smex smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain ob-elixir mmm-mode markdown-toc magit-svn magit-section magit-gitflow magit-popup ivy-yasnippet ivy-xref ivy-purpose ivy-hydra htmlize gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-mix flycheck-credo evil-org evil-magit magit git-commit with-editor transient erlang counsel-projectile counsel swiper ivy lsp-mode markdown-mode dash-functional clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a browse-at-remote auto-yasnippet yasnippet auto-dictionary alchemist company elixir-mode ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-evil treemacs ht pfuture toc-org symon symbol-overlay string-inflection spaceline-all-the-icons all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump f dash s devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el org-plus-contrib hydra lv hybrid-mode font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
+    (helm-pydoc helm-org-rifle helm-org helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet flyspell-correct-helm xterm-color vterm terminal-here shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nodejs-repl livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors company-tern web-beautify tide typescript-mode tern rjsx-mode js2-mode prettier-js js-doc import-js grizzl emmet-mode add-node-modules-path yapfify pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred cython-mode company-anaconda blacken anaconda-mode pythonic lsp-ui lsp-treemacs company-lsp helm-gtags ggtags dap-mode bui counsel-gtags eglot flymake jsonrpc exunit yasnippet-snippets wgrep treemacs-magit smex smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain ob-elixir mmm-mode markdown-toc magit-svn magit-section magit-gitflow magit-popup ivy-yasnippet ivy-xref ivy-purpose ivy-hydra htmlize gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-mix flycheck-credo evil-org evil-magit magit git-commit with-editor transient erlang counsel-projectile counsel swiper ivy lsp-mode markdown-mode dash-functional clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a browse-at-remote auto-yasnippet yasnippet auto-dictionary alchemist company elixir-mode ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-evil treemacs ht pfuture toc-org symon symbol-overlay string-inflection spaceline-all-the-icons all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump f dash s devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el org-plus-contrib hydra lv hybrid-mode font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
