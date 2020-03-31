@@ -32,16 +32,23 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
-     react
+   '(
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (html :variables web-fmt-tool 'web-beautify)
+     react
+     (auto-completion :variables
+                      auto-completion-return-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete)
      ;; better-defaults
-     javascript
+     prettier
+     (javascript :variables
+                 javascript-backend 'lsp
+                 javascript-lsp-linter nil
+                 javascript-fmt-tool 'prettier)
      emacs-lisp
      git
      ivy
@@ -56,7 +63,8 @@ This function should only modify configuration layer settings."
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
-     spell-checking
+     ;; Disable flyspell-mode (spell-checking layer) by default. Type `SPC t S` to enable it.'
+     (spell-checking :variables spell-checking-enable-by-default nil)
      sphinx
      restructuredtext
      syntax-checking
@@ -481,6 +489,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (setq javascript-fmt-tool 'prettier)
   )
 
 (defun dotspacemacs/user-load ()
@@ -497,6 +506,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (global-aggressive-indent-mode 1)
   (setq-default
    evil-escape-key-sequence "jk"
    evil-escape-delay 0.2
@@ -525,7 +535,8 @@ before packages are loaded."
       "tb" 'exunit-verify-all
       "ta" 'exunit-verify
       "tk" 'exunit-rerun
-      "tt" 'exunit-verify-single))
+      "tt" 'exunit-verify-single)
+    )
   (push '("*exunit-compilation*"
           :dedicated t
           :position bottom
@@ -533,14 +544,21 @@ before packages are loaded."
           :height 0.4
           :noselect t)
         popwin:special-display-config)
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "<return>") nil)
-    (define-key company-active-map (kbd "RET") nil)
-    (define-key company-active-map (kbd "tab") #'company-complete-selection)
-    (define-key company-active-map [tab] #'company-complete-selection)
-    )
-  ;; Tip, type M-n to paste word on point.
+  ;; `SPC p i` for grep in git project. Counsel tip: type `M-n` to paste word on point.
   (spacemacs/set-leader-keys (kbd "pi") 'counsel-projectile-git-grep)
+  (with-eval-after-load 'flycheck
+    (define-key flycheck-next-error (kbd "M-]") 'flycheck-next-error)
+    (define-key flycheck-previous-error (kbd "M-]") 'flycheck-previous-error)
+    )
+  ;; Disable confirming company's autocompletion suggestions by typing enter. Only use TAB for it.
+  ;; See auto-completion layer variables
+  ;; The following config does not work with Spacemacs, it adds `t` and `b` as prefixes.. For vanilla emacs, it would be...:
+;;  (with-eval-after-load 'company
+;;    (define-key company-active-map (kbd "<return>") nil)
+;;    (define-key company-active-map (kbd "RET") nil)
+;;    (define-key company-active-map (kbd "<tab>") #'company-complete-selection)
+;;    (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+;;    )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
