@@ -38,6 +38,8 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     yaml
+     sql
      (html :variables web-fmt-tool 'web-beautify)
      react
      (auto-completion :variables
@@ -45,6 +47,7 @@ This function should only modify configuration layer settings."
                       auto-completion-tab-key-behavior 'complete)
      ;; better-defaults
      prettier
+     latex
      (dart :variables
            dart-backend 'lsp
            lsp-dart-sdk-dir "/opt/flutter/bin/cache/dart-sdk/"
@@ -61,7 +64,7 @@ This function should only modify configuration layer settings."
      ivy
      ;; helm
      erlang
-     lsp ;; remove for eglot
+     lsp
      (elixir :variables elixir-backend 'lsp) ;; remove for eglot
      markdown
      multiple-cursors
@@ -88,9 +91,9 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     ;; elixir-mode ;; for eglot
-     ;; eglot ;; for eglot
      exunit
+     lsp-dart
+     drag-stuff
      )
 
    ;; A list of packages that cannot be updated.
@@ -517,12 +520,21 @@ before packages are loaded."
    evil-escape-key-sequence "jk"
    evil-escape-delay 0.2
    )
-  ;;  (require 'eglot)
-  ;;  (define-key flymake-mode-map (kbd "M-]") 'flymake-goto-next-error)
-  ;;  (define-key flymake-mode-map (kbd "M-[") 'flymake-goto-prev-error)
-  ;;  (add-hook 'elixir-mode-hook 'eglot-ensure)
-  ;;  (add-to-list 'eglot-server-programs '(elixir-mode "/home/nicolas/elixir-ls/release/language_server.sh"))
-  ;;  (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+  ;; Latex
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  ;; drag-stuff
+  (drag-stuff-mode t)
+  (global-set-key (kbd "C-S-k") 'drag-stuff-up)
+  (global-set-key (kbd "C-S-j") 'drag-stuff-down)
+   ;; (require 'eglot)
+   ;; (define-key flymake-mode-map (kbd "M-]") 'flymake-goto-next-error)
+   ;; (define-key flymake-mode-map (kbd "M-[") 'flymake-goto-prev-error)
+   ;; (add-hook 'elixir-mode-hook 'eglot-ensure)
+   ;; (add-to-list 'eglot-server-programs '(elixir-mode "/home/nicolas/elixir-ls/release/language_server.sh"))
+   ;; (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+  ;; LSP
+  ;; Enable lsp-log:
+  (setq lsp-log-io t)
   (setq
    lsp-ui-doc-enable nil)
   (use-package lsp-mode
@@ -575,18 +587,17 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(package-selected-packages
-     (quote
-      (flutter dart-mode helm-pydoc helm-org-rifle helm-org helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet flyspell-correct-helm xterm-color vterm terminal-here shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nodejs-repl livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors company-tern web-beautify tide typescript-mode tern rjsx-mode js2-mode prettier-js js-doc import-js grizzl emmet-mode add-node-modules-path yapfify pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred cython-mode company-anaconda blacken anaconda-mode pythonic lsp-ui lsp-treemacs company-lsp helm-gtags ggtags dap-mode bui counsel-gtags eglot flymake jsonrpc exunit yasnippet-snippets wgrep treemacs-magit smex smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain ob-elixir mmm-mode markdown-toc magit-svn magit-section magit-gitflow magit-popup ivy-yasnippet ivy-xref ivy-purpose ivy-hydra htmlize gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-mix flycheck-credo evil-org evil-magit magit git-commit with-editor transient erlang counsel-projectile counsel swiper ivy lsp-mode markdown-mode dash-functional clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a browse-at-remote auto-yasnippet yasnippet auto-dictionary alchemist company elixir-mode ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-evil treemacs ht pfuture toc-org symon symbol-overlay string-inflection spaceline-all-the-icons all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump f dash s devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el org-plus-contrib hydra lv hybrid-mode font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async))))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(yaml-mode sql-indent drag-stuff company-reftex company-auctex auctex lsp-dart flutter dart-mode helm-pydoc helm-org-rifle helm-org helm-lsp helm-gitignore helm-git-grep helm-company helm-c-yasnippet flyspell-correct-helm xterm-color vterm terminal-here shell-pop multi-term eshell-z eshell-prompt-extras esh-help web-mode tagedit slim-mode scss-mode sass-mode pug-mode impatient-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nodejs-repl livid-mode skewer-mode simple-httpd json-navigator hierarchy json-mode json-snatcher json-reformat js2-refactor multiple-cursors company-tern web-beautify tide typescript-mode tern rjsx-mode js2-mode prettier-js js-doc import-js grizzl emmet-mode add-node-modules-path yapfify pytest pyenv-mode py-isort pippel pipenv pyvenv pip-requirements lsp-python-ms live-py-mode importmagic epc ctable concurrent deferred cython-mode company-anaconda blacken anaconda-mode pythonic lsp-ui lsp-treemacs company-lsp helm-gtags ggtags dap-mode bui counsel-gtags eglot flymake jsonrpc exunit yasnippet-snippets wgrep treemacs-magit smex smeargle orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain ob-elixir mmm-mode markdown-toc magit-svn magit-section magit-gitflow magit-popup ivy-yasnippet ivy-xref ivy-purpose ivy-hydra htmlize gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ fringe-helper git-gutter+ gh-md fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck-mix flycheck-credo evil-org evil-magit magit git-commit with-editor transient erlang counsel-projectile counsel swiper ivy lsp-mode markdown-mode dash-functional clojure-snippets cider-eval-sexp-fu cider sesman queue parseedn clojure-mode parseclj a browse-at-remote auto-yasnippet yasnippet auto-dictionary alchemist company elixir-mode ac-ispell auto-complete ws-butler writeroom-mode visual-fill-column winum volatile-highlights vi-tilde-fringe uuidgen treemacs-projectile treemacs-persp treemacs-evil treemacs ht pfuture toc-org symon symbol-overlay string-inflection spaceline-all-the-icons all-the-icons memoize spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode password-generator paradox spinner overseer org-bullets open-junk-file nameless move-text macrostep lorem-ipsum link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-xref helm-themes helm-swoop helm-purpose window-purpose imenu-list helm-projectile projectile helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio flycheck-package package-lint flycheck pkg-info epl let-alist flycheck-elsa flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state iedit evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens smartparens paredit evil-args evil-anzu anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump f dash s devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile packed aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup which-key use-package pcre2el org-plus-contrib hydra lv hybrid-mode font-lock+ evil goto-chg undo-tree dotenv-mode diminish bind-map bind-key async)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
