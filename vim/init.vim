@@ -16,6 +16,11 @@ set noswapfile
 set incsearch
 set scrolloff=8
 
+" https://stackoverflow.com/questions/11993851/how-to-delete-not-cut-in-vim
+nnoremap <leader>d "_d
+xnoremap <leader>d "_d
+xnoremap <leader>p "_dP
+
 " Copy vim yanked text to system clipboard as well
 " Requires vim-gnome on Ubuntu/Debian or vim-X11 package on RedHat/CentOS/Fedora
 " Requires using vimx instead of vim - 
@@ -33,6 +38,12 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'jparise/vim-graphql'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 """"""""""""""""" coc
@@ -157,13 +168,15 @@ nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
 " Open the file tree:
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>pv :NERDTree<CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
+nnoremap <silent><leader>1 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
+nnoremap <Leader><Tab> <C-^>
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
