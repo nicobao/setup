@@ -44,6 +44,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'kevinoid/vim-jsonc'
 call plug#end()
 
 """"""""""""""""" coc
