@@ -15,6 +15,7 @@ set smartcase
 set noswapfile
 set incsearch
 set scrolloff=8
+set history=1000
 
 " https://stackoverflow.com/questions/11993851/how-to-delete-not-cut-in-vim
 nnoremap <leader>d "_d
@@ -134,8 +135,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>ff  <Plug>(coc-format-selected)
+nmap <leader>ff  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -178,6 +179,8 @@ nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader><Tab> <C-^>
+nnoremap <Leader>w <C-w>
+nnoremap <Leader>fh :History<CR> 
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
