@@ -46,6 +46,7 @@ Plug 'jparise/vim-graphql'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kevinoid/vim-jsonc'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 """"""""""""""""" coc
@@ -84,6 +85,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -160,6 +163,17 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
+nmap <leader>gd :Gdiff<CR>
+
+" Sweet gitgutter
+nmap <leader>gn <Plug>(GitGutterNextHunk)
+nmap <leader>gp <Plug>(GitGutterPrevHunk)
+" Update sign column every quarter second
+set updatetime=250
+" git add (chunk)
+nmap <Leader>ga <Plug>(GitGutterStageHunk)  
+" git undo (chunk)
+nmap <Leader>gu <Plug>(GitGutterUndoHunk)   
 
 " Coc dispatch
 nmap <leader>m :Make<CR>
