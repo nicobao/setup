@@ -44,6 +44,7 @@ Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kevinoid/vim-jsonc'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 """"""""""""""""" coc
