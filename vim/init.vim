@@ -1,3 +1,8 @@
+" Disable SQLComplete.vim hotkeys - see :h sql.txt
+let g:omni_sql_no_default_maps = 1
+" Make coc use global node instead of nvm's
+let g:coc_node_path = '/usr/bin/node'
+
 inoremap <C-c> <Esc>
 set nu
 set relativenumber
