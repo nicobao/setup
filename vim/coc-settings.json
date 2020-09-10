@@ -2,5 +2,5 @@
     "tsserver.log": "verbose",
     "java.format.settings.url": "$HOME/example/path/java-code-formatter-prefs.xml",
     "java.jdt.ls.home": "/opt/jdt-eclipse-lsp/",
-    "coc.preferences.formatOnSaveFiletypes": ["java", "js", "ts", "jsx", "tsx", "html", "css", "scss"]
+    "coc.preferences.formatOnSaveFiletypes": ["java", "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "markdown"]
 }
