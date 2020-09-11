@@ -2,5 +2,17 @@
     "tsserver.log": "verbose",
     "java.format.settings.url": "$HOME/example/path/java-code-formatter-prefs.xml",
     "java.jdt.ls.home": "/opt/jdt-eclipse-lsp/",
+    "java.home": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/home/nicolas/.sdkman/candidates/java/8.0.265.j9-adpt/",
+            "default": true
+        }, 
+        {
+            "name": "JavaSE-11",
+            "path": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/"
+        }
+    ],
     "coc.preferences.formatOnSaveFiletypes": ["java", "typescript", "typescriptreact", "javascript", "javascriptreact", "html", "css", "scss", "markdown"]
 }
