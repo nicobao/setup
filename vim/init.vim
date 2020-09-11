@@ -3,7 +3,7 @@ let g:omni_sql_no_default_maps = 1
 " Make coc use global node instead of nvm's
 let g:coc_node_path = '/usr/bin/node'
 
- " disable highlighting variables in java-syntax.vim
+ " disable highlighting variables
 highlight link JavaIdentifier NONE
 
 inoremap <C-c> <Esc>
