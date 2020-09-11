@@ -3,6 +3,9 @@ let g:omni_sql_no_default_maps = 1
 " Make coc use global node instead of nvm's
 let g:coc_node_path = '/usr/bin/node'
 
+ " disable highlighting variables in java-syntax.vim
+highlight link JavaIdentifier NONE
+
 inoremap <C-c> <Esc>
 set nu
 set relativenumber
@@ -37,19 +40,24 @@ set clipboard^=unnamed,unnamedplus
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-fugitive'
-Plug 'vim-utils/vim-man'
-Plug 'mbbill/undotree'
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-utils/vim-man'
+Plug 'mbbill/undotree'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kevinoid/vim-jsonc'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
+Plug 'matze/vim-move'
+Plug 'rstacruz/vim-closer'
+Plug 'tpope/vim-endwise'
+Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 
 """"""""""""""""" coc
@@ -101,16 +109,8 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
 
-" Use `[g` and `]g` to navigate diagnostics
+" Navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> g9 <Plug>(coc-diagnostic-prev)
 nmap <silent> g0 <Plug>(coc-diagnostic-next)
@@ -121,7 +121,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
+" Show documentation in preview window.
 nnoremap <silent> <C-H> :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
