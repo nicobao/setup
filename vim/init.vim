@@ -115,6 +115,11 @@ endif
 nmap <silent> g9 <Plug>(coc-diagnostic-prev)
 nmap <silent> g0 <Plug>(coc-diagnostic-next)
 
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -131,6 +136,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Jump to floating window (documentation)
+nmap <silent> <leader>j <Plug>(coc-float-jump)	
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -183,6 +191,14 @@ nmap <leader>m :Make<CR>
 " Undo tree plugin
 nnoremap <leader>u :UndotreeShow<CR>
 
+" https://github.com/junegunn/fzf.vim/issues/419#issuecomment-479687537
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always ' 
+  \  . (len(<q-args>) > 0 ? <q-args> : '""'), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
 " Open the file tree:
