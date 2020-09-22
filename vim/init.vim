@@ -6,6 +6,19 @@ let g:coc_node_path = '/usr/bin/node'
  " disable highlighting variables
 highlight link JavaIdentifier NONE
 
+" Open NERDTree automatically if no files were specified.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Open NERDTree automatically when started on a directory.
+" Focus on NERDTree window with "wincmd h"
+"
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | wincmd h | endif
+
+" Close vim NERDTree when it is the last window (except on startup).
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 inoremap <C-c> <Esc>
 set nu
 set relativenumber
@@ -58,6 +71,7 @@ Plug 'matze/vim-move'
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 """"""""""""""""" coc
@@ -117,8 +131,8 @@ nmap <silent> g0 <Plug>(coc-diagnostic-next)
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <silent>ga  <Plug>(coc-codeaction-selected)<CR>
+nmap <silent>ga  <Plug>(coc-codeaction-selected)<CR>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -201,8 +215,8 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
-" Open the file tree:
-nnoremap <leader>pv :NERDTree<CR>
+" Open the file tree: https://stackoverflow.com/a/54110608
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
@@ -213,6 +227,12 @@ nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>w <C-w>
 nnoremap <Leader>fh :History<CR> 
+
+" Set font (devicons)
+" https://github.com/ryanoasis/vim-devicons/wiki/Installation
+let g:airline_powerline_fonts = 1
+" Requires https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono locally installed
+set guifont=JetBrainsMono\ Nerd\ Font\ 11
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
