@@ -71,8 +71,6 @@ Plug 'matze/vim-move'
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -226,10 +224,10 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent><leader>1 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
-nnoremap <Leader>l :vertical resize +5<CR>
-nnoremap <Leader>h :vertical resize -5<CR>
-nnoremap <Leader>k :resize +5<CR>
-nnoremap <Leader>j :resize -5<CR>
+nnoremap <Leader><Right> :vertical resize +5<CR>
+nnoremap <Leader><Left> :vertical resize -5<CR>
+nnoremap <Leader><Up> :resize +5<CR>
+nnoremap <Leader><Down> :resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>w <C-w>
