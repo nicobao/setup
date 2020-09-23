@@ -71,6 +71,8 @@ Plug 'matze/vim-move'
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
@@ -190,6 +192,9 @@ nmap <leader>gs :G<CR>
 nmap <leader>gd :Gdiff<CR>
 
 " Sweet gitgutter
+" I don't like when plugins set mappings for me outside plugin-specific
+" buffers, so I disable them:
+let g:gitgutter_map_keys = 0
 nmap <leader>gn <Plug>(GitGutterNextHunk)
 nmap <leader>gp <Plug>(GitGutterPrevHunk)
 " Update sign column every quarter second
@@ -221,8 +226,10 @@ nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
 nnoremap <silent><leader>1 :source ~/.config/nvim/init.vim \| :PlugInstall<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <Leader>l :vertical resize +5<CR>
+nnoremap <Leader>h :vertical resize -5<CR>
+nnoremap <Leader>k :resize +5<CR>
+nnoremap <Leader>j :resize -5<CR>
 nnoremap <Leader>rp :resize 100<CR>
 nnoremap <Leader><Tab> <C-^>
 nnoremap <Leader>w <C-w>
