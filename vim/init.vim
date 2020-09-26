@@ -239,23 +239,29 @@ let g:airline_powerline_fonts = 1
 set guifont=DroidSansMono_Nerd_font:h11
 
 """""""""" NERDTree
-" Open the file tree: https://stackoverflow.com/a/54110608
-nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
-" Check if NERDTree is open or active
+" Check if NERDTree is open or active, mix of both, and use built-in
+" NERDTree.IsOpen() function instead
 " https://www.reddit.com/r/vim/comments/g47z4f/synchronizing_nerdtree_with_the_currently_opened/?utm_source=share&utm_medium=web2x&context=3
+" https://github.com/unkiwii/vim-nerdtree-sync
 function! IsNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
-" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
 function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff && bufname('%') !~# 'NERD_tree'
+      try
+        NERDTreeFind
+        if bufname('%') =~# 'NERD_tree'
+          setlocal cursorline
+          wincmd p
+        endif
+      endtry
   endif
 endfunction
 " Highlight currently open buffer in NERDTree
-autocmd BufRead * call SyncTree()
+autocmd BufEnter * silent! call SyncTree()
+" Open the file tree: https://stackoverflow.com/a/54110608
+" nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
 """""""""" NERDTree
 
 let g:gruvbox_contrast_dark = 'hard'
