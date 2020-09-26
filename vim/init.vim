@@ -72,6 +72,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 call plug#end()
 
 """"""""""""""""" coc
@@ -219,7 +220,7 @@ command! -bang -nargs=* Rg
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
 " Open the file tree: https://stackoverflow.com/a/54110608
-nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
@@ -236,8 +237,9 @@ nnoremap <Leader>fh :History<CR>
 " Set font (devicons)
 " https://github.com/ryanoasis/vim-devicons/wiki/Installation
 let g:airline_powerline_fonts = 1
-" Requires https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/JetBrainsMono locally installed
-set guifont=JetBrainsMono\ Nerd\ Font\ 11
+
+" Requires to have installed the nerd font first:
+set guifont=DroidSansMono_Nerd_font:h11
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
