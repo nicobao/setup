@@ -219,8 +219,6 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
-" Open the file tree: https://stackoverflow.com/a/54110608
-nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
@@ -237,9 +235,28 @@ nnoremap <Leader>fh :History<CR>
 " Set font (devicons)
 " https://github.com/ryanoasis/vim-devicons/wiki/Installation
 let g:airline_powerline_fonts = 1
-
 " Requires to have installed the nerd font first:
 set guifont=DroidSansMono_Nerd_font:h11
+
+"""""""""" NERDTree
+" Open the file tree: https://stackoverflow.com/a/54110608
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
+" Check if NERDTree is open or active
+" https://www.reddit.com/r/vim/comments/g47z4f/synchronizing_nerdtree_with_the_currently_opened/?utm_source=share&utm_medium=web2x&context=3
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+" Call NERDTreeFind if NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+" Highlight currently open buffer in NERDTree
+autocmd BufRead * call SyncTree()
+"""""""""" NERDTree
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
