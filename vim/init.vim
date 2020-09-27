@@ -260,8 +260,8 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * silent! call SyncTree()
 " Open the file tree: https://stackoverflow.com/a/54110608
-nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
-" nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
+" nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
 "
 " vim-nerdtree-syntax-highlight lag fix
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
