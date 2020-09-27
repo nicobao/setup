@@ -260,8 +260,15 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * silent! call SyncTree()
 " Open the file tree: https://stackoverflow.com/a/54110608
-" nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
-nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
+nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
+" nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
+"
+" vim-nerdtree-syntax-highlight lag fix
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
+let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['ex', 'exs', 'md', 'ts', 'tsx', 'jsx', 'js', 'css', 'html', 'asciidoc', 'adoc', 'java', 'json', 'xml', 'xsd', 'vim', 'lua', 'erl', 'jar', 'png', 'jpeg', 'jpg', 'py'] " enabled extensions with default colors
+let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
 """""""""" NERDTree
 
 let g:gruvbox_contrast_dark = 'hard'
