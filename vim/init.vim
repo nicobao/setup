@@ -165,6 +165,9 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>ff  <Plug>(coc-format-selected)
 nmap <leader>ff  <Plug>(coc-format-selected)
 
+nnoremap <Leader>od :CocFzfList diagnostics<CR> 
+nnoremap <Leader>oo :CocFzfList<CR> 
+
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -217,8 +220,9 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
-nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <Leader>ps :Rg<SPACE>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>  
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
@@ -243,25 +247,27 @@ set guifont=DroidSansMono_Nerd_font:h11
 " NERDTree.IsOpen() function instead
 " https://www.reddit.com/r/vim/comments/g47z4f/synchronizing_nerdtree_with_the_currently_opened/?utm_source=share&utm_medium=web2x&context=3
 " https://github.com/unkiwii/vim-nerdtree-sync
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff && bufname('%') !~# 'NERD_tree'
-      try
-        NERDTreeFind
-        if bufname('%') =~# 'NERD_tree'
-          setlocal cursorline
-          wincmd p
-        endif
-      endtry
-  endif
-endfunction
+" function! IsNERDTreeOpen()
+"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+" endfunction
+" function! SyncTree()
+"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff && bufname('%') !~# 'NERD_tree'
+"       try
+"         NERDTreeFind
+"         if bufname('%') =~# 'NERD_tree'
+"           setlocal cursorline
+"           wincmd p
+"         endif
+"       endtry
+"   endif
+" endfunction
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * silent! call SyncTree()
+" autocmd BufEnter * silent! call SyncTree()
 " Open the file tree: https://stackoverflow.com/a/54110608
 " nnoremap <silent> <expr> <leader>pv g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTreeToggle<CR>"
-nnoremap <silent> <expr> <leader>pv IsNERDTreeOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
+nnoremap <silent> <leader>pv :NERDTreeToggle<CR>
+" nnoremap <silent> <expr> <leader>pv IsNERDTreeOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
+nnoremap <silent> <leader>ft :NERDTreeFind<CR>
 "
 " vim-nerdtree-syntax-highlight lag fix
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
