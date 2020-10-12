@@ -7,8 +7,8 @@ let g:coc_node_path = '/usr/bin/node'
 highlight link JavaIdentifier NONE
 
 " Open NERDTree automatically if no files were specified.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Open NERDTree automatically when started on a directory.
 " Focus on NERDTree window with "wincmd h"
