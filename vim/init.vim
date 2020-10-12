@@ -54,6 +54,8 @@ set clipboard^=unnamed,unnamedplus
 
 call plug#begin(stdpath('data') . '/plugged')
 Plug 'gruvbox-community/gruvbox'
+Plug 'psliwka/vim-smoothie'
+Plug 'uiiaoo/java-syntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
