@@ -64,7 +64,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
-Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree' |
@@ -74,9 +73,11 @@ Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
 Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
-Plug 'uiiaoo/java-syntax.vim'
+Plug 'tpope/vim-dispatch'
+Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ArtBIT/vim-modularvimrc'
 call plug#end()
 
 """"""""""""""""" coc
@@ -107,8 +108,8 @@ else
 endif
 
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" Use C-j for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <C-j>' to make sure C-j is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <C-j>
       \ pumvisible() ? "\<C-n>" :
@@ -210,8 +211,12 @@ nmap <Leader>ga <Plug>(GitGutterStageHunk)
 " git undo (chunk)
 nmap <Leader>gu <Plug>(GitGutterUndoHunk)   
 
-" Coc dispatch
-nmap <leader>m :Make<CR>
+" let g:project_wide_make_command = ""
+" let g:project_wide_make_command="clean install && java -jar foo.jar"
+" Make do then put custom commands 
+nmap <leader>md :Make 
+" Make run project-wide command
+" execute "nmap <leader>mr :Make " . g:project_wide_make_command . "<CR>"
 
 " Undo tree plugin
 nnoremap <leader>u :UndotreeShow<CR>
@@ -280,6 +285,22 @@ let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['ex', 'exs', 'md', 'ts', 'tsx', 'jsx', 'js', 'css', 'html', 'asciidoc', 'adoc', 'java', 'json', 'xml', 'xsd', 'vim', 'lua', 'erl', 'jar', 'png', 'jpeg', 'jpg', 'py'] " enabled extensions with default colors
 let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
 """""""""" NERDTree
+
+""""""" vim-test
+" Having vim-dispatch is a dependecy of vim-test, see https://github.com/vim-test/vim-test#quickfix-strategies.
+" Make test commands execute using neomake:
+let test#strategy = "dispatch"
+
+nnoremap <leader>tn :TestNearest<CR>
+nnoremap <leader>tf :TestFile<CR>
+nnoremap <leader>ts :TestSuite<CR>
+nnoremap <leader>tl :TestLast<CR>
+nnoremap <leader>tv :TestVisit<CR>
+"""""""
+
+" vim-airline
+" disable check for white/tab mixed-indent trailing error in vim-airline
+let g:airline#extensions#whitespace#enabled = 0
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
