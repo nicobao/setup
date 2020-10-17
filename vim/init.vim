@@ -32,9 +32,8 @@ set shiftwidth=4
 set smartindent
 set wrap
 set linebreak
-set breakindent
+set breakindent 
 set showbreak=ͱ
-" set textwidth=0 wrapmargin=0
 set ignorecase
 set smartcase
 set noswapfile
