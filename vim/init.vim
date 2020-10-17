@@ -30,7 +30,11 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 " set expandtab
 set smartindent
-set nowrap
+set wrap
+set linebreak
+set breakindent
+set showbreak=ͱ
+" set textwidth=0 wrapmargin=0
 set ignorecase
 set smartcase
 set noswapfile
@@ -249,7 +253,7 @@ nnoremap <Leader>fh :History<CR>
 " https://github.com/ryanoasis/vim-devicons/wiki/Installation
 let g:airline_powerline_fonts = 1
 " Requires to have installed the nerd font first:
-set guifont=DroidSansMono_Nerd_font:h11
+set guifont=DroidSansMono_Nerd_font:h13
 
 """""""""" NERDTree
 " Check if NERDTree is open or active, mix of both, and use built-in
