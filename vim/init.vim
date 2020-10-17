@@ -41,7 +41,7 @@ set incsearch
 set scrolloff=8
 set history=1000
 set list 
-set listchars=tab:▸\ ,trail:·,eol:¬
+set listchars=tab:▸\ ,space:·,eol:¬
 
 " https://stackoverflow.com/questions/11993851/how-to-delete-not-cut-in-vim
 nnoremap <leader>d "_d
