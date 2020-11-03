@@ -81,7 +81,7 @@ Plug 'vim-test/vim-test'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ArtBIT/vim-modularvimrc'
-Plug 'tpope/vim-eunuch.git'
+Plug 'tpope/vim-eunuch'
 call plug#end()
 
 """"""""""""""""" coc
