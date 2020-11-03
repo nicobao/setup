@@ -81,6 +81,7 @@ Plug 'vim-test/vim-test'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ArtBIT/vim-modularvimrc'
+Plug 'git@github.com:tpope/vim-eunuch.git'
 call plug#end()
 
 """"""""""""""""" coc
@@ -196,10 +197,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 """"""""""""""""""""""""""""""""""""""""""""""
 
 " Sweet Sweet FuGITive
-nmap <leader>gh :diffget //3<CR>
-nmap <leader>gu :diffget //2<CR>
-nmap <leader>gs :G<CR>
+" nmap <leader>gh :diffget //3<CR>
+" nmap <leader>gu :diffget //2<CR>
+" nmap <leader>gs :G<CR>
 nmap <leader>gd :Gdiff<CR>
+nmap <Leader>gb :Git blame<CR>
 
 " Sweet gitgutter
 " I don't like when plugins set mappings for me outside plugin-specific
@@ -217,9 +219,9 @@ nmap <Leader>gu <Plug>(GitGutterUndoHunk)
 " let g:project_wide_make_command = ""
 " let g:project_wide_make_command="clean install && java -jar foo.jar"
 " Make do then put custom commands 
-nmap <leader>md :Make 
+nmap <leader>mr :Make 
 " Make run project-wide command
-" execute "nmap <leader>mr :Make " . g:project_wide_make_command . "<CR>"
+" execute "nmap <leader>mp :Make " . g:project_wide_make_command . "<CR>"
 
 " Undo tree plugin
 nnoremap <leader>u :UndotreeShow<CR>
@@ -235,6 +237,7 @@ command! -bang -nargs=* Rg
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>  
+nnoremap <leader>prf :CocSearch 
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader><CR> :e ~/.config/nvim/init.vim<CR>
