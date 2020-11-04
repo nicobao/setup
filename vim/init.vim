@@ -5,6 +5,8 @@ let g:coc_node_path = '/usr/bin/node'
 
  " disable highlighting variables
 highlight link JavaIdentifier NONE
+""" Disable freaking polyglot autoindent, as it messes up with formatters.
+let g:polyglot_disabled = ['autoindent']
 
 " Open NERDTree automatically if no files were specified.
 " autocmd StdinReadPre * let s:std_in=1
@@ -26,9 +28,9 @@ let mapleader = " "
 set termguicolors
 set nohlsearch
 set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-" set expandtab
+set tabstop=4 softtabstop=4 " softabstop will potentially remove spaces for tabs
+set shiftwidth=4 " by default, 0 means that it will be the same as tabstop
+set noexpandtab smarttab
 set smartindent
 set wrap
 set linebreak
