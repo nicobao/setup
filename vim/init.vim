@@ -5,7 +5,9 @@ let g:coc_node_path = '/usr/bin/node'
 
  " disable highlighting variables
 highlight link JavaIdentifier NONE
-""" Disable freaking polyglot autoindent, as it messes up with formatters.
+
+" Disable polyglot autoindent, as it messes up with formatters...
+" See https://github.com/neoclide/coc-prettier/issues/1#issuecomment-721696534 
 let g:polyglot_disabled = ['autoindent']
 
 " Open NERDTree automatically if no files were specified.
