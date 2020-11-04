@@ -47,6 +47,10 @@ set history=1000
 set list 
 set listchars=tab:▸\ ,space:·,eol:¬
 
+nnoremap <F1> :tabnew<CR> 
+nnoremap <F2> :tabprevious<CR> 
+nnoremap <F3> :tabnext<CR> 
+
 " https://stackoverflow.com/questions/11993851/how-to-delete-not-cut-in-vim
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -86,7 +90,11 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ArtBIT/vim-modularvimrc'
 Plug 'tpope/vim-eunuch'
+Plug 'whonore/Coqtail'
 call plug#end()
+
+" No automatic mapping for Coq
+let g:coqtail_nomap = 1
 
 """"""""""""""""" coc
 " TextEdit might fail if hidden is not set.
