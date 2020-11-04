@@ -88,7 +88,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ArtBIT/vim-modularvimrc'
+Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
 call plug#end()
