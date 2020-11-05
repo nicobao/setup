@@ -47,6 +47,10 @@ set history=1000
 set list 
 set listchars=tab:▸\ ,space:·,eol:¬
 
+" https://vi.stackexchange.com/a/17338/27487
+vmap > >gv
+vmap < <gv
+
 nnoremap <F1> :tabnew<CR> 
 nnoremap <F2> :tabprevious<CR> 
 nnoremap <F3> :tabnext<CR> 
@@ -91,6 +95,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
+Plug 'nicwest/vim-http'
 call plug#end()
 
 " No automatic mapping for Coq
