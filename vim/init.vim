@@ -87,15 +87,15 @@ Plug 'preservim/nerdtree' |
 Plug 'kevinoid/vim-jsonc'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
-Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'MarcWeber/vim-addon-local-vimrc'
+Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
+Plug 'lervag/vimtex'
 Plug 'nicwest/vim-http'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
@@ -275,7 +275,7 @@ nnoremap <Leader>fh :History<CR>
 " https://github.com/ryanoasis/vim-devicons/wiki/Installation
 let g:airline_powerline_fonts = 1
 " Requires to have installed the nerd font first:
-set guifont=DroidSansMono_Nerd_font:h13
+" set guifont=JetBrainsMono_Nerd_font:h14
 
 """""""""" NERDTree
 " Check if NERDTree is open or active, mix of both, and use built-in
@@ -327,6 +327,12 @@ nnoremap <leader>tv :TestVisit<CR>
 " vim-airline
 " disable check for white/tab mixed-indent trailing error in vim-airline
 let g:airline#extensions#whitespace#enabled = 0
+
+" latex
+let g:tex_flavor = 'latex'
+
+" scala https://github.com/scalameta/coc-metals/issues/361
+au BufRead,BufNewFile *.sbt set filetype=scala
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
