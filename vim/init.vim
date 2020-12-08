@@ -1,7 +1,8 @@
 " Disable SQLComplete.vim hotkeys - see :h sql.txt
 let g:omni_sql_no_default_maps = 1
 " Make coc use global node instead of nvm's
-let g:coc_node_path = '/usr/bin/node'
+let g:coc_node_path = '/home/nicolas/.nvm/versions/node/v12.18.3/bin/node'
+let g:node_host_prog = '/home/nicolas/.nvm/versions/node/v12.18.3/bin/neovim-node-host'
 
  " disable highlighting variables
 highlight link JavaIdentifier NONE
@@ -21,7 +22,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | wincmd h | endif
 
 " Close vim NERDTree when it is the last window (except on startup).
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 inoremap <C-c> <Esc>
 set nu
@@ -96,6 +97,8 @@ Plug 'MarcWeber/vim-addon-local-vimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
 Plug 'nicwest/vim-http'
+Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
 call plug#end()
 
 " No automatic mapping for Coq
