@@ -3,6 +3,7 @@
 	"tsserver.trace.server": "verbose",
 	"elixir.pathToElixirLS": "/opt/elixir-ls/release/language_server.sh",
 	"elixirLS.dialyzerEnabled": false,
+	"java.format.settings.url": "$HOME/example/path/java-code-formatter-prefs.xml",
 	"java.home": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/",
 	"java.trace.server": "verbose",
 	"metals.serverVersion": "0.9.7",
