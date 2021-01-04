@@ -6,8 +6,13 @@
 	"java.format.settings.url": "$HOME/example/path/java-code-formatter-prefs.xml",
 	"java.home": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/",
 	"java.trace.server": "verbose",
-	"metals.serverVersion": "0.9.7",
-	
+	"java.jdt.ls.vmargs": "-noverify -Xmx6G -XX:+UseG1GC -XX:+UseStringDeduplication",
+	"java.completion.importOrder": [
+		"java",
+		"javax",
+		"org",
+		"com"
+	],
 	"java.configuration.runtimes": [
 		{
 			"name": "JavaSE-1.8",
@@ -44,7 +49,9 @@
 		},
 		"racket": {
 			"command": "racket",
-			"args": ["--lib racket-langserver"],
+			"args": [
+				"--lib racket-langserver"
+			],
 			"filetypes": [
 				"racket",
 				"scheme"
@@ -70,7 +77,9 @@
 		},
 		"ocaml-lsp": {
 			"command": "opam",
-			"rootPatterns": ["dune-project"],
+			"rootPatterns": [
+				"dune-project"
+			],
 			"args": [
 				"config",
 				"exec",
