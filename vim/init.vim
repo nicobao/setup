@@ -22,7 +22,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | wincmd h | endif
 
 " Close vim NERDTree when it is the last window (except on startup).
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 inoremap <C-c> <Esc>
 set nu
@@ -90,7 +90,6 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
@@ -303,13 +302,6 @@ nnoremap <silent> <leader>pv :NERDTreeToggle<CR>
 " nnoremap <silent> <expr> <leader>pv IsNERDTreeOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
 nnoremap <silent> <leader>ft :NERDTreeFind<CR>
 "
-" vim-nerdtree-syntax-highlight lag fix
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
-let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['ex', 'exs', 'md', 'ts', 'tsx', 'jsx', 'js', 'css', 'html', 'asciidoc', 'adoc', 'java', 'json', 'xml', 'xsd', 'vim', 'lua', 'erl', 'jar', 'png', 'jpeg', 'jpg', 'py'] " enabled extensions with default colors
-let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
-"""""""""" NERDTree
 
 """"""" vim-test
 " Having vim-dispatch is a dependecy of vim-test, see https://github.com/vim-test/vim-test#quickfix-strategies.
