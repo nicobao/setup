@@ -16,16 +16,17 @@
 	"java.configuration.runtimes": [
 		{
 			"name": "JavaSE-1.8",
-			"path": "/home/nicolas/.sdkman/candidates/java/8.0.265.j9-adpt/"
+			"path": "/home/nicolas/.sdkman/candidates/java/8.0.275.open-adpt/"
 		},
 		{
 			"name": "JavaSE-11",
-			"path": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/",
+			"path": "/home/nicolas/.sdkman/candidates/java/11.0.9.open-adpt/",
 			"default": true
 		}
 	],
 	"coc.preferences.formatOnSaveFiletypes": [
 		"sbt",
+		"yaml",
 		"xml",
 		"scala",
 		"ocaml",
