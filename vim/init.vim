@@ -78,7 +78,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
