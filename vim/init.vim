@@ -1,8 +1,11 @@
 " Disable SQLComplete.vim hotkeys - see :h sql.txt
 let g:omni_sql_no_default_maps = 1
 " Make coc use global node instead of nvm's
-let g:coc_node_path = '/home/nicolas/.nvm/versions/node/v12.18.3/bin/node'
-let g:node_host_prog = '/home/nicolas/.nvm/versions/node/v12.18.3/bin/neovim-node-host'
+let g:coc_node_path = '/home/nicolas/.nvm/versions/node/v14.15.3/bin/node'
+let g:node_host_prog = '/home/nicolas/.nvm/versions/node/v14.15.3/bin/neovim-node-host'
+
+" Store and restore decisions only if the answer was given in upper case (Y/N/A).
+let g:localvimrc_persistent = 1
 
  " disable highlighting variables
 highlight link JavaIdentifier NONE
