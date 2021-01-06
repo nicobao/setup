@@ -79,6 +79,7 @@ Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
@@ -222,6 +223,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nmap <leader>gs :G<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <Leader>gb :Git blame<CR>
+nmap <leader>gv :GBrowse<CR>
+vmap <leader>gv :GBrowse<CR>
 
 " Sweet gitgutter
 " I don't like when plugins set mappings for me outside plugin-specific
