@@ -3,7 +3,7 @@
 	"tsserver.trace.server": "verbose",
 	"elixir.pathToElixirLS": "/opt/elixir-ls/release/language_server.sh",
 	"elixirLS.dialyzerEnabled": false,
-	"java.format.settings.url": "$HOME/example/path/java-code-formatter-prefs.xml",
+	"java.format.settings.url": "/home/nicolas/nicobao/quarkus/independent-projects/ide-config/src/main/resources/eclipse-format.xml",
 	"java.home": "/home/nicolas/.sdkman/candidates/java/11.0.8.hs-adpt/",
 	"java.trace.server": "verbose",
 	"java.jdt.ls.vmargs": "-noverify -Xmx6G -XX:+UseG1GC -XX:+UseStringDeduplication",
@@ -30,6 +30,8 @@
 		"xml",
 		"scala",
 		"ocaml",
+		"json",
+		"sh",
 		"java",
 		"json",
 		"typescript",
@@ -97,6 +99,18 @@
 			"filetypes": [
 				"elixir",
 				"eelixir"
+			]
+		},
+		"bash": {
+			"command": "bash-language-server",
+			"args": [
+				"start"
+			],
+			"filetypes": [
+				"sh"
+			],
+			"ignoredRootPaths": [
+				"~"
 			]
 		},
 		"clojure-lsp": {
