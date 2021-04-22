@@ -1,0 +1,9 @@
+[user]
+	email = CHANGEME
+	name = CHANGEME
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+
+[mergetool "vimdiff"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
