@@ -221,11 +221,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Sweet Sweet FuGITive
 " nmap <leader>gh :diffget //3<CR>
 " nmap <leader>gu :diffget //2<CR>
-" nmap <leader>gs :G<CR>
+" Check changes against previous HEAD:
+nmap <leader>gc :Gdiff HEAD^<CR>
+" Check changes between modified local version and remote:
 nmap <leader>gd :Gdiff<CR>
+" git status:
+nmap <leader>gs :G<CR>
 nmap <Leader>gb :Git blame<CR>
-nmap <leader>gv :GBrowse<CR>
-vmap <leader>gv :GBrowse<CR>
+nmap <leader>go :GBrowse<CR>
+vmap <leader>go :GBrowse<CR>
 
 " Sweet gitgutter
 " I don't like when plugins set mappings for me outside plugin-specific
