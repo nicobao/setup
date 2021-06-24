@@ -94,6 +94,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
@@ -101,6 +102,7 @@ Plug 'lervag/vimtex'
 Plug 'nicwest/vim-http'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
+Plug 'rstacruz/vim-closer'
 call plug#end()
 
 " No automatic mapping for Coq
@@ -172,6 +174,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" clangd-specific mapping
+autocmd FileType c,h          nnoremap <buffer> <silent> gs :CocCommand clangd.switchSourceHeader<CR>
+autocmd FileType c,h          nnoremap <buffer> <silent> gf :CocCommand clangd.symbolInfo<CR>
+
 " Show documentation in preview window.
 nnoremap <silent> <C-H> :call <SID>show_documentation()<CR>
 
@@ -222,7 +228,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nmap <leader>gh :diffget //3<CR>
 " nmap <leader>gu :diffget //2<CR>
 " Check changes against previous HEAD:
-nmap <leader>gc :Gdiff HEAD^<CR>
+nmap <leader>gc :Gdiff develop...<CR>
 " Check changes between modified local version and remote:
 nmap <leader>gd :Gdiff<CR>
 " git status:
@@ -312,6 +318,13 @@ nnoremap <silent> <leader>pv :NERDTreeToggle<CR>
 " nnoremap <silent> <expr> <leader>pv IsNERDTreeOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
 nnoremap <silent> <leader>ft :NERDTreeFind<CR>
 "
+" vim-nerdtree-syntax-highlight lag fix
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
+let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['ex', 'exs', 'md', 'ts', 'tsx', 'jsx', 'js', 'css', 'html', 'asciidoc', 'adoc', 'java', 'json', 'xml', 'xsd', 'vim', 'lua', 'erl', 'jar', 'png', 'jpeg', 'jpg', 'py'] " enabled extensions with default colors
+let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
+"""""""""" NERDTree
 
 """"""" vim-test
 " Having vim-dispatch is a dependecy of vim-test, see https://github.com/vim-test/vim-test#quickfix-strategies.
