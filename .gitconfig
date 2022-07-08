@@ -1,9 +1,16 @@
 [user]
 	email = CHANGEME
 	name = CHANGEME
+
 [merge]
 	conflictstyle = diff3
 	tool = vimdiff
 
 [mergetool "vimdiff"]
-	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+	cmd = /opt/neovim/nvim.appimage -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+[alias]
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
