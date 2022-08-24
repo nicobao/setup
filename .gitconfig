@@ -1,6 +1,10 @@
 [user]
 	email = CHANGEME
 	name = CHANGEME
+	signingKey = CHANGEME
+
+[commit]
+	gpgsign = true
 
 [merge]
 	conflictstyle = diff3
@@ -20,3 +24,6 @@
 
 [pull]
 	rebase = true
+
+[init]
+	defaultBranch = main
