@@ -1,8 +1,9 @@
 " Disable SQLComplete.vim hotkeys - see :h sql.txt
 let g:omni_sql_no_default_maps = 1
 " Make coc use global node instead of nvm's
-let g:coc_node_path = '/home/nicolas/.nvm/versions/node/v14.15.3/bin/node'
-let g:node_host_prog = '/home/nicolas/.nvm/versions/node/v14.15.3/bin/neovim-node-host'
+let g:coc_node_path = '/home/nicolas/.nvm/versions/node/v16.15.0/bin/node'
+let g:node_host_prog = '/home/nicolas/.nvm/versions/node/v16.15.0/bin/neovim-node-host'
+let g:coc_disable_transparent_cursor = 1
 
 " Store and restore decisions only if the answer was given in upper case (Y/N/A).
 let g:localvimrc_persistent = 1
@@ -74,10 +75,10 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'gruvbox-community/gruvbox'
 Plug 'psliwka/vim-smoothie'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf','do': './install --all'}
+Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-rhubarb'
@@ -88,13 +89,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kevinoid/vim-jsonc'
+Plug 'sotte/presenting.vim'
+Plug 'rstacruz/vim-closer'
 Plug 'tpope/vim-commentary'
 Plug 'matze/vim-move'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-dispatch'
 Plug 'vim-test/vim-test' 
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'embear/vim-localvimrc'
 Plug 'tpope/vim-eunuch'
 Plug 'whonore/Coqtail'
@@ -102,7 +104,7 @@ Plug 'lervag/vimtex'
 Plug 'nicwest/vim-http'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
-Plug 'rstacruz/vim-closer'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 call plug#end()
 
 " No automatic mapping for Coq
@@ -140,12 +142,12 @@ endif
 " NOTE: Use command ':verbose imap <C-j>' to make sure C-j is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <C-j>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<C-j>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<C-j>" :
       \ coc#refresh()
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -173,10 +175,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
-" clangd-specific mapping
-autocmd FileType c,h          nnoremap <buffer> <silent> gs :CocCommand clangd.switchSourceHeader<CR>
-autocmd FileType c,h          nnoremap <buffer> <silent> gf :CocCommand clangd.symbolInfo<CR>
 
 " Show documentation in preview window.
 nnoremap <silent> <C-H> :call <SID>show_documentation()<CR>
@@ -227,15 +225,11 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " Sweet Sweet FuGITive
 " nmap <leader>gh :diffget //3<CR>
 " nmap <leader>gu :diffget //2<CR>
-" Check changes against previous HEAD:
-nmap <leader>gc :Gdiff develop...<CR>
-" Check changes between modified local version and remote:
+" nmap <leader>gs :G<CR>
 nmap <leader>gd :Gdiff<CR>
-" git status:
-nmap <leader>gs :G<CR>
 nmap <Leader>gb :Git blame<CR>
-nmap <leader>go :GBrowse<CR>
-vmap <leader>go :GBrowse<CR>
+nmap <leader>gv :GBrowse<CR>
+vmap <leader>gv :GBrowse<CR>
 
 " Sweet gitgutter
 " I don't like when plugins set mappings for me outside plugin-specific
@@ -318,13 +312,6 @@ nnoremap <silent> <leader>pv :NERDTreeToggle<CR>
 " nnoremap <silent> <expr> <leader>pv IsNERDTreeOpen() ? "\:NERDTreeClose<CR>" : ":NERDTreeToggle<cr><c-w>l:call SyncTree()<cr><c-w>h"
 nnoremap <silent> <leader>ft :NERDTreeFind<CR>
 "
-" vim-nerdtree-syntax-highlight lag fix
-let g:NERDTreeSyntaxDisableDefaultExtensions = 1
-let g:NERDTreeSyntaxDisableDefaultExactMatches = 1
-let g:NERDTreeSyntaxDisableDefaultPatternMatches = 1
-let g:NERDTreeSyntaxEnabledExtensions = ['ex', 'exs', 'md', 'ts', 'tsx', 'jsx', 'js', 'css', 'html', 'asciidoc', 'adoc', 'java', 'json', 'xml', 'xsd', 'vim', 'lua', 'erl', 'jar', 'png', 'jpeg', 'jpg', 'py'] " enabled extensions with default colors
-let g:NERDTreeSyntaxEnabledExactMatches = ['node_modules', 'favicon.ico'] " enabled exact matches with default colors
-"""""""""" NERDTree
 
 """"""" vim-test
 " Having vim-dispatch is a dependecy of vim-test, see https://github.com/vim-test/vim-test#quickfix-strategies.
