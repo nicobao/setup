@@ -1,8 +1,0 @@
-#!/usr/bin/expect
-set username "EMAIL\r"
-set config "/etc/openvpn/ovpn_udp/it30.nordvpn.com.udp.ovpn"
-
-spawn sudo openvpn --script-security 2  --config $config --auth-user-pass
-expect "Enter Auth Username:"
-send $username
-interact
