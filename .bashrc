@@ -6,6 +6,9 @@ alias vi="/opt/neovim/nvim.appimage"
 export VISUAL="/opt/neovim/nvim.appimage"
 export EDITOR="/opt/neovim/nvim.appimage"
 alias l="ls -lrth"
+# sudo apt install fd-find
+# For Ubuntu
+alias fd=fdfind
 # For vim fzf and rg:
 # echo "path/to/exclude" > .rgignore
 # echo "path/to/exclude" > .fdignore
